@@ -60,3 +60,11 @@ Open `colab_quickstart.ipynb` in Google Colab. It clones this public repository 
 GitHub hosts source files, not a running Python service. To let visitors execute this app in a web browser, deploy the *folder's content* in a Hugging Face Space with Gradio SDK and a CPU plan.
 
 **Scope:** Educational Iris classification only; not a photo classifier or general chatbot. Output scores may not be calibrated probabilities. Out-of-range values may give unreliable predictions.
+
+## Live browser demo — GitHub Pages
+
+A static HTML/JavaScript version of this *same trained neural network* is available at **https://saaeiddev.github.io/projects/** after GitHub Pages is enabled. The site files live in the repository root's `docs/` folder (separate from this PyTorch source folder).
+
+To publish: open the **saaeiddev/projects** repository → **Settings → Pages → Build and deployment → Deploy from a branch**. Select **main** and **/docs**, then click **Save**. No Python server or paid hosting is needed. The browser reads `docs/model.json` (the learned PyTorch weights converted to JSON) and performs the same dense-layer, ReLU, and Softmax computations directly in JavaScript.
+
+GitHub Pages configuration must be enabled by a repository administrator; uploading `docs/` alone does not verify that the public site is deployed.
