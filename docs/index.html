@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080f1c">
+<meta name="description" content="NeuroSeed AI — a real PyTorch-trained neural network running entirely in your browser.">
+<title>NeuroSeed AI — Interactive Neural Network</title>
+<style>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#080f1c;color:#eaf7fa;font-size:15px}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse 900px 600px at 70% 5%,#0a3d3c48,transparent 72%),radial-gradient(ellipse 600px 600px at 0% 80%,#17364d55,transparent 72%),#080f1c}button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}a:hover{color:#9bf8e6}button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #90ffea;outline-offset:3px}.shell{width:min(1160px,calc(100% - 60px));margin:auto}header{height:82px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #263947}header .brand{display:flex;gap:12px;align-items:center;font-size:12px;font-weight:800;letter-spacing:.13em}.mark{height:38px;width:38px;display:grid;place-items:center;border:1px solid #428c83;border-radius:9px;color:#96ffe8;font-size:23px}.muted{color:#728e9d;font-weight:500}.nav{display:flex;gap:18px;align-items:center}.nav a{border:1px solid #334451;border-radius:6px;padding:11px 14px;font-size:10px;font-weight:700;letter-spacing:.09em}.status{font:700 10px ui-monospace,monospace;color:#81dbc8}.status:before{content:"";display:inline-block;height:7px;width:7px;background:#5cf5c1;border-radius:50%;margin-right:8px;box-shadow:0 0 10px #5cf5c1}.status.error{color:#f4a19f}.status.error:before{background:#f16b73;box-shadow:none}.hero{padding:75px 0 54px;display:flex;justify-content:space-between;align-items:center;gap:30px}.eyebrow{font:700 11px ui-monospace,monospace;letter-spacing:.14em;color:#77dfcb}.hero h1{font-size:clamp(44px,6vw,74px);line-height:1.05;letter-spacing:-.063em;font-weight:730;margin:18px 0}.hero h1 em{font-style:normal;color:#86e9d4}.hero p{color:#abc2cc;max-width:620px;line-height:1.85;font-size:15px}.tags{display:flex;flex-wrap:wrap;gap:17px;margin-top:30px;color:#a7bdc5;font:650 10px ui-monospace,monospace;letter-spacing:.06em}.tags span:before{content:"•";margin-right:8px;color:#68ead1}.hero-orb{width:245px;aspect-ratio:1;border:1px solid #267d7766;border-radius:50%;display:grid;place-items:center;background:repeating-radial-gradient(circle at center,transparent 0 38px,#66ffd313 39px 40px),radial-gradient(circle at center,#19857740,#03142005 60%);box-shadow:0 0 130px #268d8040;flex:none}.hero-orb span{font-size:90px;color:#9bffe6;text-shadow:0 0 60px #67e6c1;font-weight:200}.section-title{display:flex;align-items:center;gap:15px;margin:16px 0 18px}.section-title b{font:800 10px ui-monospace,monospace;color:#8eead1;border:1px solid #2e7f6d;border-radius:4px;padding:9px}.section-title h2{font-size:19px;letter-spacing:-.035em;margin:0}.section-title small{margin-left:auto;color:#728d9c;font:700 10px ui-monospace,monospace;letter-spacing:.04em}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:linear-gradient(140deg,#142635f3,#101b2af0);border:1px solid #2d4352;border-radius:12px;padding:27px 29px;box-shadow:0 20px 65px #020b144d}.kicker{color:#78d9c4;font:700 10px ui-monospace,monospace;letter-spacing:.13em}.card h3{font-size:25px;margin:15px 0 10px;letter-spacing:-.052em}.hint{color:#93b0bc;font-size:12px;line-height:1.8}.inputs{display:grid;grid-template-columns:1fr 1fr;gap:30px 25px;margin:35px 0}.field{min-width:0}.field label{display:flex;justify-content:space-between;font-size:12px;color:#d7e7ed;font-weight:650;margin-bottom:12px}.field label span{color:#809eac;font-weight:500;font-size:10px}.field div{display:flex;align-items:center;gap:10px}.field input[type=range]{width:100%;min-width:0;accent-color:#7af4d6}.field input[type=number]{background:#0c1b29;border:1px solid #375262;color:#e9faf5;border-radius:5px;padding:7px 4px;width:62px;text-align:center;font-size:12px}.presets{display:flex;gap:9px;flex-wrap:wrap}.presets button,.reset{padding:10px 14px;color:#b8d1db;background:#1b303d;border:1px solid #385465;border-radius:6px;font-size:11px}.presets button:hover,.presets button[aria-pressed=true]{background:#64cdb6;border-color:#64cdb6;color:#05151c}.reset{margin-top:21px;background:transparent;color:#8caebc}.result{color:#b4ffe8;font-size:clamp(35px,3.7vw,55px);letter-spacing:-.05em;font-weight:750;margin:16px 0 4px}.score-note{color:#94b4bf;font-size:12px}.scores{display:grid;gap:22px;margin-top:42px}.score-label{display:flex;justify-content:space-between;margin-bottom:10px;font-size:12px}.score-label strong{font:700 13px ui-monospace,monospace}.track{width:100%;height:9px;background:#24394a;border-radius:6px;overflow:hidden}.fill{height:100%;width:0;background:#66829a;border-radius:6px;transition:width .22s}.score.winner .fill{background:linear-gradient(90deg,#24a58b,#a8ffe9)}.score.winner .score-label{color:#9cffe3}.notice{border-top:1px solid #2b4552;margin-top:38px;padding-top:18px;font-size:11px;line-height:1.8;color:#82a1b1}.diagram-card{margin-bottom:38px}.diagram-caption{display:flex;justify-content:space-between;align-items:center;gap:20px}.architecture{font:700 13px ui-monospace,monospace;color:#8debd5;white-space:nowrap}canvas{display:block;width:100%;height:320px;margin:15px 0 4px}.key{font:650 10px ui-monospace,monospace;color:#83a5b1;border-top:1px solid #294451;padding-top:13px}.math{display:grid;grid-template-columns:1.3fr .7fr;gap:16px}.formula{color:#affae5;font:650 15px/1.7 ui-monospace,monospace;background:#0b1c29;border:1px solid #2d5c57;text-align:center;border-radius:6px;padding:14px 9px;margin:21px 0}.terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.term{border:1px solid #2d4858;background:#1b303e;color:#c2dae2;padding:11px;border-radius:6px;font:600 11px/1.8 ui-monospace,monospace}.term strong{color:#83ebd5}.total{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #304655;padding-top:15px;margin-top:17px;font-size:12px;color:#acc5cb}.total strong{color:#bcfce7;font:700 17px ui-monospace,monospace}.stats{display:grid;grid-template-columns:1fr 1fr;gap:23px 12px;margin-top:31px}.stats strong{display:block;font-size:29px;letter-spacing:-.06em}.stats small{display:block;color:#86a0ac;font:600 10px/1.5 ui-monospace,monospace;margin-top:5px}.disclaimer{font-size:11px;line-height:1.8;color:#86a5b0;border-top:1px solid #314c58;margin-top:35px;padding-top:18px}footer{border-top:1px solid #253b4c;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:54px 0 30px;padding-top:24px;color:#80a0aa;font:700 10px ui-monospace,monospace}footer a{color:#9de7d8}@media(max-width:860px){.hero-orb{width:190px}.math{grid-template-columns:1fr}.architecture{font-size:11px}}@media(max-width:670px){.shell{width:calc(100% - 30px)}header{height:70px}.brand{font-size:10px!important}.mark{height:31px;width:31px;font-size:18px}.nav{gap:8px}.nav a{padding:8px;font-size:9px}.status{font-size:8px}.hero{padding:50px 0 42px}.hero-orb{display:none}.hero h1{font-size:46px}.hero p{font-size:13px}.tags{font-size:9px}.grid{grid-template-columns:1fr}.card{padding:22px 20px}.section-title h2{font-size:16px}.section-title small{display:none}.diagram-caption{display:block}.architecture{margin-top:13px}canvas{height:300px}.inputs{gap:25px 14px}.field input[type=number]{width:52px}.math{display:grid;grid-template-columns:1fr}}@media(max-width:355px){.inputs{grid-template-columns:1fr}.field input[type=number]{width:80px}}
+</style>
+</head>
+<body><div class="shell">
+<header><div class="brand"><span class="mark">N·</span><span>NEUROSEED <span class="muted">/ AI LAB</span></span></div><div class="nav"><span class="status" id="status">LOADING MODEL</span><a href="https://github.com/saaeiddev/projects/tree/main/NeuroSeed-Iris-AI" target="_blank" rel="noopener">VIEW SOURCE ↗</a></div></header>
+<main>
+<section class="hero"><div><span class="eyebrow">ARTIFICIAL INTELLIGENCE, EXPLAINED</span><h1>A neural network.<br><em>No mystery.</em></h1><p>Four flower measurements enter. A real neural network trained from scratch does the mathematics. Watch the prediction — and what happens <b>inside one neuron</b> — live.</p><div class="tags"><span>TRAINED WITH PYTORCH</span><span>RUNS IN YOUR BROWSER</span><span>NO CLOUD INFERENCE</span></div></div><div class="hero-orb" aria-hidden="true"><span>✳</span></div></section>
+<div class="section-title"><b>01</b><h2>Experiment with a real model</h2><small>IRIS CLASSIFIER · 4 → 12 → 8 → 3</small></div>
+<div class="grid">
+<section class="card"><span class="kicker">INPUT STATION</span><h3>Shape the input.</h3><p class="hint">Adjust the measurements in centimeters. Every change passes through the trained network.</p><div class="inputs" id="inputs"></div><div class="kicker" style="margin-bottom:11px">EXAMPLE FLOWERS</div><div class="presets"><button data-preset="0">Setosa</button><button data-preset="1">Versicolor</button><button data-preset="2">Virginica</button></div><button class="reset" id="reset">↺ Reset experiment</button></section>
+<section class="card"><span class="kicker">MODEL OUTPUT</span><div class="hint" style="margin-top:32px">THE NETWORK PREDICTS</div><div class="result" id="prediction" aria-live="polite">Loading…</div><div class="score-note" id="confidence">Loading trained weights</div><div id="scores" class="scores"></div><div class="notice">The probabilities come from Softmax on the network's output scores. This is an educational Iris model, not a general-purpose plant recognizer.</div></section>
+</div>
+<div class="section-title" style="margin-top:43px"><b>02</b><h2>See the network</h2><small>CONNECTIONS ARE A MATHEMATICAL DIAGRAM</small></div>
+<section class="card diagram-card"><div class="diagram-caption"><div><span class="kicker">NEURAL TOPOLOGY</span><h3>Connections, made visible.</h3><p class="hint">Each circle represents a computation. Every line represents a numerical weight, not a physical wire.</p></div><div class="architecture">04 INPUTS → 12 HIDDEN → 08 HIDDEN → 03 OUTPUTS</div></div><canvas id="network" role="img" aria-label="Four inputs connected to twelve neurons, eight neurons, and three outputs"></canvas><div class="key">CYAN = POSITIVE WEIGHT &nbsp;·&nbsp; PURPLE = NEGATIVE WEIGHT &nbsp;·&nbsp; FIRST HIDDEN NEURON HIGHLIGHTED</div></section>
+<div class="section-title"><b>03</b><h2>Inside one neuron</h2><small>REAL WEIGHTS · REAL OPERATIONS</small></div>
+<div class="math">
+<section class="card"><span class="kicker">FIRST HIDDEN NEURON</span><h3>Multiply. Sum. Activate.</h3><p class="hint">Four normalized input values × their learned weights, plus bias, pass through ReLU.</p><div class="formula">z = x₁w₁ + x₂w₂ + x₃w₃ + x₄w₄ + b</div><div class="terms" id="terms"></div><div class="total"><span>Weighted sum + bias</span><strong id="sum">—</strong></div><div class="total"><span>ReLU activation · max(0, z)</span><strong id="activation">—</strong></div></section>
+<section class="card"><span class="kicker">MODEL FACTS</span><h3>Small network.<br>Genuine learning.</h3><div class="stats"><div><strong>93.3%</strong><small>TEST ACCURACY</small></div><div><strong>28 / 30</strong><small>UNSEEN SAMPLES</small></div><div><strong>191</strong><small>LEARNABLE PARAMETERS</small></div><div><strong>3</strong><small>FLOWER CLASSES</small></div></div><p class="disclaimer">The model uses the classic Iris dataset. Accuracy is measured on 30 held-out samples. Visualized neurons are abstract computations, not physical structures. Predictions outside the training distribution may be unreliable.</p></section>
+</div>
+</main>
+<footer><span>NEUROSEED AI © 2026 AMIR SAEID DEHGHAN</span><span>PYTORCH TRAINING · JAVASCRIPT INFERENCE</span><a href="https://github.com/saaeiddev/projects/tree/main/NeuroSeed-Iris-AI">SOURCE CODE ↗</a></footer>
+</div>
+<script type="module">
+"use strict";
+const labels=["Sepal length","Sepal width","Petal length","Petal width"];
+const ranges=[[4.3,7.9],[2.0,4.4],[1.0,6.9],[0.1,2.5]];
+const presets=[[5.1,3.5,1.4,0.2],[6,2.7,4.5,1.5],[6.7,3,5.2,2.3]];
+const $=id=>document.getElementById(id);
+let model=null,last=null;
+const initial=presets[0];
+const controls=[];
+labels.forEach((label,i)=>{
+ const field=document.createElement("div");field.className="field";
+ const lab=document.createElement("label");lab.textContent=label+" ";const unit=document.createElement("span");unit.textContent="cm";lab.append(unit);
+ const body=document.createElement("div");
+ const slider=document.createElement("input");slider.type="range";slider.min=ranges[i][0];slider.max=ranges[i][1];slider.step=0.1;slider.value=initial[i];slider.setAttribute("aria-label",label+" slider");
+ const number=document.createElement("input");number.type="number";number.min=slider.min;number.max=slider.max;number.step=slider.step;number.value=slider.value;number.id="number-"+i;lab.htmlFor=number.id;
+ slider.addEventListener("input",()=>{number.value=slider.value;recalculate()});
+ number.addEventListener("input",()=>{if(number.value!==""){const n=Number(number.value);if(Number.isFinite(n))slider.value=n}recalculate()});
+ number.addEventListener("change",()=>{const n=Number(number.value);const v=number.value!==""&&Number.isFinite(n)?Math.min(ranges[i][1],Math.max(ranges[i][0],n)):Number(slider.value);slider.value=v;number.value=v;recalculate()});
+ body.append(slider,number);field.append(lab,body);$("inputs").append(field);controls.push({slider,number})
+});
+function setInputs(values){controls.forEach((c,i)=>{c.slider.value=values[i];c.number.value=values[i]});recalculate()}
+document.querySelectorAll("[data-preset]").forEach(b=>b.addEventListener("click",()=>setInputs(presets[Number(b.dataset.preset)])));
+$("reset").addEventListener("click",()=>setInputs(initial));
+const relu=arr=>arr.map(x=>Math.max(0,x));
+const affine=(inputs,layer)=>layer.weights.map((row,i)=>row.reduce((sum,w,j)=>sum+w*inputs[j],layer.bias[i]));
+function calculate(inputs){
+ const normalized=inputs.map((v,i)=>(v-model.mean[i])/model.std[i]);
+ const z1=affine(normalized,model.layers[0]);const h1=relu(z1);
+ const h2=relu(affine(h1,model.layers[1]));
+ const logits=affine(h2,model.layers[2]);const max=Math.max(...logits);
+ const exps=logits.map(x=>Math.exp(x-max));const total=exps.reduce((a,b)=>a+b,0);
+ const probs=exps.map(x=>x/total);
+ const winner=probs.indexOf(Math.max(...probs));
+ const weights=model.layers[0].weights[0];
+ return {normalized,h1,h2,probs,winner,first:{terms:normalized.map((x,i)=>x*weights[i]),weights,bias:model.layers[0].bias[0],sum:z1[0],activation:h1[0]}}
+}
+function fmt(n){return (n>=0?"+":"")+n.toFixed(3)}
+function recalculate(){
+ if(!model)return;
+ const inputs=controls.map(c=>c.number.value.trim()===""?NaN:Number(c.number.value));
+ if(inputs.some((n,i)=>!Number.isFinite(n)||n<ranges[i][0]||n>ranges[i][1])){$("prediction").textContent="Invalid input";return}
+ try{last=calculate(inputs)}catch(err){console.error(err);$("prediction").textContent="Prediction failed";return}
+ $("prediction").textContent=model.classes[last.winner].replace("Iris ","");
+ $("confidence").textContent=(last.probs[last.winner]*100).toFixed(1)+"% estimated model score";
+ const scores=$("scores");scores.replaceChildren();
+ last.probs.forEach((p,i)=>{const row=document.createElement("div");row.className="score"+(i===last.winner?" winner":"");const head=document.createElement("div");head.className="score-label";const name=document.createElement("span");name.textContent=model.classes[i].replace("Iris ","");const val=document.createElement("strong");val.textContent=(p*100).toFixed(1)+"%";head.append(name,val);const track=document.createElement("div");track.className="track";const fill=document.createElement("div");fill.className="fill";fill.style.width=(p*100)+"%";track.append(fill);row.append(head,track);scores.append(row)});
+ const math=$("terms");math.replaceChildren();last.first.terms.forEach((v,i)=>{const t=document.createElement("div");t.className="term";t.textContent="x"+(i+1)+" × w"+(i+1)+" = ";const b=document.createElement("strong");b.textContent=fmt(v);t.append(b);math.append(t)});const b=document.createElement("div");b.className="term";b.textContent="Bias = "+fmt(last.first.bias);math.append(b);
+ $("sum").textContent=fmt(last.first.sum);$("activation").textContent=last.first.activation.toFixed(3);
+ document.querySelectorAll("[data-preset]").forEach(b=>{const selected=presets[Number(b.dataset.preset)].every((v,i)=>Math.abs(v-inputs[i])<.0001);b.setAttribute("aria-pressed",selected?"true":"false")});
+ requestAnimationFrame(draw)
+}
+const canvas=$("network");const ctx=canvas.getContext("2d");
+function draw(){
+ if(!model||!last||!ctx)return;
+ const bounds=canvas.getBoundingClientRect(),w=Math.max(280,bounds.width),h=Math.max(200,bounds.height),pixelRatio=Math.min(devicePixelRatio||1,2);
+ canvas.width=w*pixelRatio;canvas.height=h*pixelRatio;ctx.setTransform(pixelRatio,0,0,pixelRatio,0,0);ctx.clearRect(0,0,w,h);
+ const edge=w<600?27:65;const nodes=[4,12,8,3].map((count,col)=>Array.from({length:count},(_,i)=>({x:edge+col*(w-2*edge)/3,y:38+(i+.5)*(h-54)/count})));
+ ctx.textAlign="center";ctx.fillStyle="#89a9ad";ctx.font="10px monospace";
+ ["INPUT","HIDDEN 1","HIDDEN 2","OUTPUT"].forEach((name,i)=>ctx.fillText(name,edge+i*(w-2*edge)/3,16));
+ const values=[last.normalized,last.h1,last.h2,last.probs];
+ for(let col=0;col<3;col++){const weights=model.layers[col].weights;nodes[col].forEach((src,i)=>nodes[col+1].forEach((dest,j)=>{const weight=weights[j][i],alpha=Math.min(.55,.06+.25*Math.abs(weight));ctx.strokeStyle=weight<0?"rgba(173,130,223,"+alpha+")":"rgba(87,227,194,"+alpha+")";ctx.lineWidth=col===0&&j===0?1.7:.7;ctx.beginPath();ctx.moveTo(src.x,src.y);ctx.lineTo(dest.x,dest.y);ctx.stroke()}))}
+ nodes.forEach((layer,col)=>layer.forEach((pt,i)=>{const v=Math.min(1,Math.abs(values[col][i])/(col===3?1:3));const radius=w<600?4.5:6;ctx.beginPath();ctx.arc(pt.x,pt.y,radius,0,2*Math.PI);ctx.fillStyle="rgba(69,215,184,"+(.18+v*.7)+")";ctx.fill();ctx.strokeStyle=col===1&&i===0?"#defff2":"#7bc9ba";ctx.lineWidth=col===1&&i===0?2:1;ctx.stroke();if(col===1&&i===0){ctx.beginPath();ctx.arc(pt.x,pt.y,radius+5,0,2*Math.PI);ctx.strokeStyle="#9affd688";ctx.lineWidth=1;ctx.stroke()}}))
+}
+addEventListener("resize",()=>requestAnimationFrame(draw),{passive:true});
+try{
+ const response=await fetch("./model.json",{cache:"no-store"});
+ if(!response.ok)throw Error("Cannot load model (HTTP "+response.status+")");
+ model=await response.json();
+ if(model.format!=="neuroseed-iris-v1"||model.layers.length!==3||model.layers[0].weights.length!==12||model.layers[1].weights.length!==8||model.layers[2].weights.length!==3)throw Error("Invalid model");
+ $("status").textContent="AI MODEL ONLINE";recalculate();
+}catch(err){console.error("NeuroSeed failed to start:",err);$("status").textContent="MODEL UNAVAILABLE";$("status").classList.add("error");$("prediction").textContent="Failed to load model";$("confidence").textContent="Reload the page to retry"}
+</script>
+</body></html>
